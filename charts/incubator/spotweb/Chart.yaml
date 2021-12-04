@@ -17,7 +17,7 @@ maintainers:
 - email: info@truecharts.org
   name: TrueCharts
   url: https://truecharts.org
-name: logitech-media-server
+name: spotweb
 sources:
 - https://github.com/spotweb/spotweb
 - https://hub.docker.com/r/jgeusebroek/spotweb

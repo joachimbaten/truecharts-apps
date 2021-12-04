@@ -74,6 +74,54 @@ questions:
       type: dict
       attrs:
 # Include{fixedEnv}
+        - variable: SPOTWEB_DB_TYPE
+          label: "SPOTWEB DB TYPE"
+          schema:
+            type: string
+            default: pdo_pgsql
+            required: true
+            enum:
+              - value: pdo_pgsql
+                description: "PostgreSQL"
+              - value: pdo_mysql
+                description: MySQL
+        - variable: SPOTWEB_DB_HOST
+          label: "The database hostname / IP"
+          schema:
+            type: string
+            required: true
+        - variable: SPOTWEB_DB_PORT
+          label: "The database port"
+          schema:
+            type: int
+            default: 5432
+            required: true
+        - variable: SPOTWEB_DB_NAME
+          label: "The database used for spotweb"
+          schema:
+            type: string
+            default: "spotweb"
+            required: true
+        - variable: SPOTWEB_DB_USER
+          label: "The database server username"
+          schema:
+            type: string
+            required: true
+        - variable: SPOTWEB_DB_PASS
+          label: "The database server password"
+          schema:
+            type: string
+            required: true
+        - variable: SPOTWEB_CRON_RETRIEVE
+          label: "Cron schedule for article retrieval. E.g. */15 * * * * for every fifteen minutes."
+          schema:
+            type: string
+            default: "*/15 * * * *"
+        - variable: SPOTWEB_CRON_CACHE_CHECK
+          label: "Cron schedule for article cache sanity check. E.g. 10 */1 * * * for 10 minutes after every hour."
+          schema:
+            type: string
+            default: "10 */1 * * *"
 
 # Include{containerConfig}
 
@@ -85,116 +133,58 @@ questions:
       attrs:
         - variable: main
           label: "Main Service"
-          description: "The Primary service on which the healthcheck runs, often the webUI"
+          description: "Spotweb Web UI and API endpoint"
           schema:
             type: dict
             attrs:
-              - variable: enabled
-                label: "Enable the service"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: type
-                label: "Service Type"
-                description: "ClusterIP's are only internally available, nodePorts expose the container to the host node System, Loadbalancer exposes the service using the system loadbalancer"
-                schema:
-                  type: string
-                  default: "NodePort"
-                  enum:
-                    - value: "NodePort"
-                      description: "NodePort"
-                    - value: "ClusterIP"
-                      description: "ClusterIP"
-                    - value: "LoadBalancer"
-                      description: "LoadBalancer"
-              - variable: loadBalancerIP
-                label: "LoadBalancer IP"
-                description: "LoadBalancerIP"
-                schema:
-                  show_if: [["type", "=", "LoadBalancer"]]
-                  type: string
-                  default: ""
-              - variable: externalIPs
-                label: "External IP's"
-                description: "External IP's"
-                schema:
-                  show_if: [["type", "=", "LoadBalancer"]]
-                  type: list
-                  default: []
-                  items:
-                    - variable: externalIP
-                      label: "External IP"
-                      schema:
-                        type: string
-              - variable: ports
-                label: "Service's Port(s) Configuration"
-                schema:
-                  type: dict
-                  attrs:
+# Include{serviceSelector}
                     - variable: main
-                      label: "Main Service Port Configuration"
+                      label: "Web Interface"
                       schema:
                         type: dict
                         attrs:
-                          - variable: enabled
-                            label: "Enable the port"
-                            schema:
-                              type: boolean
-                              default: true
-                              hidden: true
-                          - variable: protocol
-                            label: "Port Type"
-                            schema:
-                              type: string
-                              default: "HTTP"
-                              enum:
-                                - value: HTTP
-                                  description: "HTTP"
-                                - value: "HTTPS"
-                                  description: "HTTPS"
-                                - value: TCP
-                                  description: "TCP"
-                                - value: "UDP"
-                                  description: "UDP"
-                          - variable: targetPort
-                            label: "Target Port"
+                          - variable: port
+                            label: "Port"
                             description: "This port exposes the container port on the service"
                             schema:
                               type: int
-                              default: PLACEHOLDERPORT
-                              editable: false
-                              hidden: true
-                          - variable: port
-                            label: "Container Port"
-                            schema:
-                              type: int
-                              default: PLACEHOLDERPORT
+                              default: 80
                               editable: true
                               required: true
-                          - variable: nodePort
-                            label: "Node Port (Optional)"
-                            description: "This port gets exposed to the node. Only considered when service type is NodePort"
+                          - variable: advanced
+                            label: "Show Advanced settings"
                             schema:
-                              type: int
-                              min: 9000
-                              max: 65535
-                              default: PLACEHOLDERNODEPORT
-
-  - variable: serviceexpert
-    group: "Networking and Services"
-    label: "Show Expert Config"
-    schema:
-      type: boolean
-      default: false
-      show_subquestions_if: true
-      subquestions:
-        - variable: hostNetwork
-          group: "Networking and Services"
-          label: "Host-Networking (Complicated)"
-          schema:
-            type: boolean
-            default: false
+                              type: boolean
+                              default: false
+                              show_subquestions_if: true
+                              subquestions:
+                                - variable: protocol
+                                  label: "Port Type"
+                                  schema:
+                                    type: string
+                                    default: "HTTP"
+                                    enum:
+                                      - value: HTTP
+                                        description: "HTTP"
+                                      - value: "HTTPS"
+                                        description: "HTTPS"
+                                      - value: TCP
+                                        description: "TCP"
+                                      - value: "UDP"
+                                        description: "UDP"
+                                - variable: nodePort
+                                  label: "Node Port (Optional)"
+                                  description: "This port gets exposed to the node. Only considered when service type is NodePort, Simple or LoadBalancer"
+                                  schema:
+                                    type: int
+                                    min: 80
+                                    max: 65535
+                                - variable: targetPort
+                                  label: "Target Port"
+                                  description: "The internal(!) port on the container the Application runs on"
+                                  schema:
+                                    type: int
+                                    default: 80
 
 # Include{serviceExpert}
 
@@ -218,105 +208,31 @@ questions:
                 schema:
                   type: boolean
                   default: true
+                  hidden: true
               - variable: type
-                label: "(Advanced) Type of Storage"
-                description: "Sets the persistence type"
+                label: "Type of Storage"
+                description: "Sets the persistence type, Anything other than PVC could break rollback!"
                 schema:
                   type: string
-                  default: "pvc"
+                  default: "simplePVC"
                   enum:
-                    - value: "pvc"
-                      description: "pvc"
+                    - value: "simplePVC"
+                      description: "PVC (simple)"
+                    - value: "simpleHP"
+                      description: "HostPath (simple)"
                     - value: "emptyDir"
                       description: "emptyDir"
+                    - value: "pvc"
+                      description: "pvc"
                     - value: "hostPath"
                       description: "hostPath"
-              - variable: storageClass
-                label: "(Advanced) storageClass"
-                description: " Warning: Anything other than SCALE-ZFS will break rollback!"
-                schema:
-                  show_if: [["type", "=", "pvc"]]
-                  type: string
-                  default: "SCALE-ZFS"
-              - variable: labelsList
-                label: "Labels"
-                schema:
-                  type: list
-                  default: []
-                  items:
-                    - variable: labelItem
-                      label: "Label"
-                      schema:
-                        type: dict
-                        attrs:
-                          - variable: name
-                            label: "Name"
-                            schema:
-                              type: string
-                          - variable: value
-                            label: "Value"
-                            schema:
-                              type: string
-              - variable: annotationsList
-                label: "Annotations"
-                schema:
-                  type: list
-                  default: []
-                  items:
-                    - variable: annotationItem
-                      label: "Label"
-                      schema:
-                        type: dict
-                        attrs:
-                          - variable: name
-                            label: "Name"
-                            schema:
-                              type: string
-                          - variable: value
-                            label: "Value"
-                            schema:
-                              type: string
-              - variable: setPermissions
-                label: "Automatic Permissions"
-                description: "Automatically set permissions on install"
-                schema:
-                  show_if: [["type", "=", "hostPath"]]
-                  type: boolean
-                  default: true
-              - variable: readOnly
-                label: "readOnly"
-                schema:
-                  type: boolean
-                  default: false
+# Include{persistenceBasic}
               - variable: hostPath
                 label: "hostPath"
                 description: "Path inside the container the storage is mounted"
                 schema:
                   show_if: [["type", "=", "hostPath"]]
                   type: hostpath
-              - variable: hostPathType
-                label: "hostPath Type"
-                schema:
-                  show_if: [["type", "=", "hostPath"]]
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Default"
-                    - value: "DirectoryOrCreate"
-                      description: "DirectoryOrCreate"
-                    - value: "Directory"
-                      description: "Directory"
-                    - value: "FileOrCreate"
-                      description: "FileOrCreate"
-                    - value: "File"
-                      description: "File"
-                    - value: "Socket"
-                      description: "Socket"
-                    - value: "CharDevice"
-                      description: "CharDevice"
-                    - value: "BlockDevice"
-                      description: "BlockDevice"
               - variable: mountPath
                 label: "mountPath"
                 description: "Path inside the container the storage is mounted"
@@ -336,26 +252,8 @@ questions:
                       description: "Default"
                     - value: "Memory"
                       description: "Memory"
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PV"
-                schema:
-                  show_if: [["type", "=", "pvc"]]
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  show_if: [["type", "=", "pvc"]]
-                  type: string
-                  default: "100Gi"
+# Include{persistenceAdvanced}
+
 # Include{persistenceList}
 
   - variable: ingress
@@ -378,33 +276,39 @@ questions:
 # Include{ingressExpert}
 
 # Include{ingressList}
-
-  - variable: securityContext
+  - variable: advancedSecurity
+    label: "Show Advanced Security Settings"
     group: "Security and Permissions"
-    label: "Security Context"
     schema:
-      type: dict
-      attrs:
-        - variable: privileged
-          label: "Privileged mode"
+      type: boolean
+      default: false
+      show_subquestions_if: true
+      subquestions:
+        - variable: securityContext
+          label: "Security Context"
           schema:
-            type: boolean
-            default: false
-        - variable: readOnlyRootFilesystem
-          label: "ReadOnly Root Filesystem"
-          schema:
-            type: boolean
-            default: false
-        - variable: allowPrivilegeEscalation
-          label: "Allow Privilege Escalation"
-          schema:
-            type: boolean
-            default: false
-        - variable: runAsNonRoot
-          label: "runAsNonRoot"
-          schema:
-            type: boolean
-            default: true
+            type: dict
+            attrs:
+              - variable: privileged
+                label: "Privileged mode"
+                schema:
+                  type: boolean
+                  default: false
+              - variable: readOnlyRootFilesystem
+                label: "ReadOnly Root Filesystem"
+                schema:
+                  type: boolean
+                  default: false
+              - variable: allowPrivilegeEscalation
+                label: "Allow Privilege Escalation"
+                schema:
+                  type: boolean
+                  default: false
+              - variable: runAsNonRoot
+                label: "runAsNonRoot"
+                schema:
+                  type: boolean
+                  default: false
 
   - variable: podSecurityContext
     group: "Security and Permissions"
