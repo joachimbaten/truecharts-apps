@@ -2,7 +2,7 @@ image:
   # -- image repository
   repository: tccr.io/truecharts/komga
   # -- image tag
-  tag: v0.134.0@sha256:b38ff9fd6502fe1272adef4d8b0780e3164ed32a4ccac21ada0912a1cc4a16e1
+  tag: v0.135.0@sha256:6d5dcf093464493c4490b8b809f45b908302b0143af60d30e4322e2aa8654851
   # -- image pull policy
   pullPolicy: IfNotPresent
 

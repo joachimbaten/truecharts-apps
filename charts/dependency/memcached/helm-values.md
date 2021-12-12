@@ -12,8 +12,8 @@ You will, however, be able to use all values referenced in the common chart here
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"tccr.io/truecharts/memcached"` |  |
-| image.tag | string | `"v1.6.12@sha256:90da9d23e5c448d44ee3c1aa2af4c868ab5a3f8042a4000851fe55355db7c569"` |  |
+| image.repository | string | `"ghcr.io/truecharts/memcached"` |  |
+| image.tag | string | `"v1.6.12@sha256:3887a722b71d004c54ecf41a9f937edf5cd6a85c5e7c70935964b7aedf61b856"` |  |
 | service.main.ports.main.port | int | `11211` |  |
 | service.main.ports.main.targetPort | int | `11211` |  |
 

@@ -2,7 +2,7 @@ image:
   # -- image repository
   repository: tccr.io/truecharts/prowlarr
   # -- image tag
-  tag: v0.1.6.1184@sha256:44938a94880e98d0636612cbb3a92b0dc0688c060f7415265c44372e272f4deb
+  tag: v0.1.8.1234@sha256:c9477aa58c0e07f972e48fbad4d1dd7faa3040e9f7fc8c0d79c3c96f3f034615
   # -- image pull policy
   pullPolicy: IfNotPresent
 

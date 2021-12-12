@@ -8,7 +8,6 @@ TrueCharts are designed to be installed as TrueNAS SCALE app only. We can not gu
 ## Source Code
 
 * <https://github.com/cdr/code-server>
-* <https://hub.docker.com/r/linuxserver/code-server>
 
 ## Requirements
 
@@ -18,7 +17,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://truecharts.org | common | 8.9.7 |
+| https://truecharts.org | common | 8.9.18 |
 
 ## Installing the Chart
 

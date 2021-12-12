@@ -13,7 +13,7 @@ You will, however, be able to use all values referenced in the common chart here
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"tccr.io/truecharts/kms"` |  |
-| image.tag | string | `"vminimal@sha256:808c060d4ad8cc05bf3bee5d959683f884845d3d625829bcb9e79d18a2c701fd"` |  |
+| image.tag | string | `"vminimal@sha256:8f6b1deff8e6358d2f1201a6080288382f49dc959ee7ba0ba0cbba9049de7fff"` |  |
 | podSecurityContext.runAsGroup | int | `0` |  |
 | podSecurityContext.runAsUser | int | `0` |  |
 | securityContext.readOnlyRootFilesystem | bool | `false` |  |

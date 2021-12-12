@@ -1,7 +1,7 @@
 image:
   repository: tccr.io/truecharts/zwavejs2mqtt
   pullPolicy: IfNotPresent
-  tag: v6.0.3@sha256:8fdac2ebee3443d0c1e62a3d52e14959e4717b1c33e4a7ed76f0c45b74d09fcd
+  tag: v6.1.0@sha256:a32bf85046c00acd3e9cd2a567c53902d9b83312514057ce3f845b037ffc1bc8
 
 securityContext:
   readOnlyRootFilesystem: false

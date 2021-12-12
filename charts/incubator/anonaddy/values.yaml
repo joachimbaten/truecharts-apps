@@ -1,6 +1,6 @@
 image:
   repository: tccr.io/truecharts/anonaddy
-  tag: v0.8.7@sha256:ec36fa40052eed3629b2346fee28cee0c3c7f00903903f846bfc5261802197d6
+  tag: v0.8.9@sha256:7e6295239394c21d94fa370d6a1fbab5b35fd06026f47ba8a35a9d367d763254
   pullPolicy: IfNotPresent
 
 strategy:

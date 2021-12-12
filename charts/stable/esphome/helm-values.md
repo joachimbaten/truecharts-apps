@@ -13,8 +13,8 @@ You will, however, be able to use all values referenced in the common chart here
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/truecharts/esphome"` |  |
-| image.tag | string | `"v2021.11.4@sha256:c4e3f2174e8636578a2a619eef7644f5ac94f427c531eedc31436e47f27b21a3"` |  |
+| image.repository | string | `"tccr.io/truecharts/esphome"` |  |
+| image.tag | string | `"v2021.12.0@sha256:ac5a972431f16f8fc194e80904c77862c6570498a553cd12bc5f7dbfd4f0cce9"` |  |
 | persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
 | service.main.ports.main.port | int | `6052` |  |

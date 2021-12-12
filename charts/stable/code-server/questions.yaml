@@ -185,7 +185,7 @@ questions:
       attrs:
         - variable: config
           label: "App Config Storage"
-          description: "Stores the Application Configuration."
+          description: "Stores the Application Config."
           schema:
             type: dict
             attrs:

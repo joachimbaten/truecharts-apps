@@ -2,13 +2,16 @@ image:
   # -- image repository
   repository: tccr.io/truecharts/photoprism
   # -- image tag
-  tag: v20211130@sha256:97fa3752e28cd26282f06b87f299c63f5b8413b84de09acd8b71375a2b77540f
+  tag: v20211203@sha256:a1455179da40abe39c1a8750e9f9b8134d3bfb506a0e642dcd5fc3b69579b571
   # -- image pull policy
   pullPolicy: IfNotPresent
 
 securityContext:
   readOnlyRootFilesystem: false
 
+secret:
+  # -- Initial admin password. **BE SURE TO CHANGE THIS!**
+  PHOTOPRISM_ADMIN_PASSWORD: "please-change"
 # -- environment variables. See [image docs](https://docs.photoprism.org/getting-started/config-options/) for more details.
 # @default -- See below
 env:
@@ -30,16 +33,12 @@ env:
   PHOTOPRISM_CONFIG_PATH: /assets/config
   # -- Photoprism backup path
   PROTOPRISM_BACKUP_PATH: /assets/backup
-  # -- Initial admin password. **BE SURE TO CHANGE THIS!**
-  PHOTOPRISM_ADMIN_PASSWORD: "please-change"
   # -- Disable authentication / password protection
   PHOTOPRISM_PUBLIC: "false"
   # -- Sets UID Photoprism runs under.
   UID:  # 1000
   # -- Sets GID Photoprism runs under.
   GID:  # 1000
-  # -- Sets UMASK.
-  UMASK:  # 0000
   PHOTOPRISM_DATABASE_DRIVER: "mysql"            # Use MariaDB 10.5+ or MySQL 8+ instead of SQLite for improved performance
   PHOTOPRISM_DATABASE_NAME: "photoprism"         # MariaDB or MySQL database schema name
   PHOTOPRISM_DATABASE_USER: "photoprism"         # MariaDB or MySQL database user name

@@ -1,6 +1,105 @@
 # Changelog<br>
 
 
+<a name="common-8.9.20"></a>
+### [common-8.9.20](https://github.com/truecharts/apps/compare/common-8.9.19...common-8.9.20) (2021-12-12)
+
+#### Chore
+
+* update docker general non-major ([#1518](https://github.com/truecharts/apps/issues/1518))
+
+
+
+<a name="common-8.9.19"></a>
+### [common-8.9.19](https://github.com/truecharts/apps/compare/common-8.9.18...common-8.9.19) (2021-12-12)
+
+#### Fix
+
+* support some different jdbc url's for mariadb injector
+
+
+
+<a name="common-8.9.18"></a>
+### [common-8.9.18](https://github.com/truecharts/apps/compare/common-test-3.3.7...common-8.9.18) (2021-12-11)
+
+#### Chore
+
+* update non-major docker ([#1507](https://github.com/truecharts/apps/issues/1507))
+
+
+
+<a name="common-8.9.17"></a>
+### [common-8.9.17](https://github.com/truecharts/apps/compare/common-8.9.16...common-8.9.17) (2021-12-08)
+
+#### Fix
+
+* try using a seperate renovate group for dependency train
+
+
+
+<a name="common-8.9.16"></a>
+### [common-8.9.16](https://github.com/truecharts/apps/compare/common-8.9.15...common-8.9.16) (2021-12-08)
+
+#### Chore
+
+* update non-major ([#1488](https://github.com/truecharts/apps/issues/1488))
+
+
+
+<a name="common-8.9.15"></a>
+### [common-8.9.15](https://github.com/truecharts/apps/compare/common-8.9.14...common-8.9.15) (2021-12-07)
+
+#### Chore
+
+* update non-major ([#1479](https://github.com/truecharts/apps/issues/1479))
+
+
+
+<a name="common-8.9.14"></a>
+### [common-8.9.14](https://github.com/truecharts/apps/compare/common-test-3.3.6...common-8.9.14) (2021-12-07)
+
+#### Chore
+
+* update non-major ([#1475](https://github.com/truecharts/apps/issues/1475))
+
+
+
+<a name="common-8.9.13"></a>
+### common-8.9.13 (2021-12-05)
+
+#### Chore
+
+* move all container references to TCCR ([#1448](https://github.com/truecharts/apps/issues/1448))
+* ensure container references are prefixed with v
+* cleanup the ci for the security page a bit
+* bump common
+* retrigger common release
+* update non-major ([#1466](https://github.com/truecharts/apps/issues/1466))
+* update non-major ([#1449](https://github.com/truecharts/apps/issues/1449))
+* update non-major ([#1443](https://github.com/truecharts/apps/issues/1443))
+* update non-major ([#1427](https://github.com/truecharts/apps/issues/1427))
+* update non-major ([#1423](https://github.com/truecharts/apps/issues/1423))
+* update common
+
+#### Fix
+
+* move deps back to ghcr for now.
+
+
+
+<a name="common-8.9.11"></a>
+### [common-8.9.11](https://github.com/truecharts/apps/compare/common-test-3.3.2...common-8.9.11) (2021-12-05)
+
+#### Chore
+
+* update non-major ([#1466](https://github.com/truecharts/apps/issues/1466))
+
+#### Fix
+
+* move deps back to ghcr for now.
+
+
+
 <a name="common-8.9.10"></a>
 ### [common-8.9.10](https://github.com/truecharts/apps/compare/common-test-3.3.1...common-8.9.10) (2021-12-03)
 

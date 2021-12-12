@@ -15,17 +15,17 @@ You will, however, be able to use all values referenced in the common chart here
 | env | object | See below | environment variables. See [image docs](https://github.com/marthoc/docker-deconz/blob/master/README.md) for more details. |
 | env.DECONZ_DEVICE | string | `nil` | Override the location where deCONZ looks for the RaspBee/Conbee device. |
 | env.DECONZ_VNC_MODE | int | `1` | Enable VNC access to the container to view the deCONZ ZigBee mesh |
-| env.DECONZ_VNC_PASSWORD | string | `nil` | If VNC is enabled (DECONZ_VNC_MODE=1) you can change the default password "changeme" using a Secret. |
 | env.DECONZ_VNC_PORT | int | `5900` | VNC server listen port |
 | env.DECONZ_WEB_PORT | int | `8080` | Web UI listen port |
 | env.DECONZ_WS_PORT | int | `6080` | Websocket listen port |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/deconz-community/deconz-docker"` | image repository |
-| image.tag | string | `"v2.13.02@sha256:ed4a88ee75eeaf04155c3e733cf38011247139ed265d178b67ddde46889eca8c"` | image tag |
+| image.repository | string | `"tccr.io/truecharts/deconz"` | image repository |
+| image.tag | string | `"v2.13.01@sha256:f43bf475d9d0cf6bc0700da1b10d5533e1eaea43f1a417a096ad8cafb033b249"` | image tag |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext.runAsGroup | int | `0` |  |
 | podSecurityContext.runAsUser | int | `0` |  |
+| secret.DECONZ_VNC_PASSWORD | string | `""` |  |
 | securityContext.readOnlyRootFilesystem | bool | `false` |  |
 | securityContext.runAsNonRoot | bool | `false` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |

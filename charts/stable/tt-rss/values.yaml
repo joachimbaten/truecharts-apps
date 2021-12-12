@@ -4,7 +4,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: v1.9075.0@sha256:9779b47027627c16b3f6c0e69b9a5c7964a7b701ff8ccc6b1f0a7d5d371c7c6b
+  tag: v1.9078.0@sha256:2f2fe216d50c2b95be6463991ea51c657a826eaed30267764147a00e6d2ce4f8
 
 securityContext:
   readOnlyRootFilesystem: false

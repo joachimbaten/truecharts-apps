@@ -11,21 +11,21 @@ You will, however, be able to use all values referenced in the common chart here
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.CLEAN_TMP_DIR | string | `"1"` |  |
-| env.DISPLAY_HEIGHT | string | `"768"` |  |
-| env.DISPLAY_WIDTH | string | `"1280"` |  |
-| env.KEEP_APP_RUNNING | string | `"0"` |  |
+| env.CLEAN_TMP_DIR | int | `1` |  |
+| env.DISPLAY_HEIGHT | int | `768` |  |
+| env.DISPLAY_WIDTH | int | `1280` |  |
+| env.KEEP_APP_RUNNING | int | `0` |  |
 | env.PUID | int | `568` |  |
-| env.SECURE_CONNECTION | string | `"0"` |  |
-| env.VNC_PASSWORD | string | `""` |  |
+| env.SECURE_CONNECTION | int | `0` |  |
 | envTpl.USER_ID | string | `"{{ .Values.env.PUID }}"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"tccr.io/truecharts/jdownloader-2"` |  |
-| image.tag | string | `"v1.7.1@sha256:f5c7103d8870367cae893099a9a26929860ca5a13ebc7a1e4e335f1f296c40dd"` |  |
+| image.tag | string | `"v1.7.1@sha256:ba37e3a795f6e64466de3e81152af78c5fe8f6c3beeeee5a2bc948c41a631b16"` |  |
 | persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
 | podSecurityContext.runAsGroup | int | `0` |  |
 | podSecurityContext.runAsUser | int | `0` |  |
+| secret.VNC_PASSWORD | string | `""` |  |
 | securityContext.readOnlyRootFilesystem | bool | `false` |  |
 | securityContext.runAsNonRoot | bool | `false` |  |
 | service.main.ports.main.port | int | `10054` |  |
