@@ -1,12 +1,13 @@
 image:
   repository: jgeusebroek/spotweb
   pullPolicy: IfNotPresent
-  tag: 20210328@sha256:e41482a844d8e5582239868d61ef8335dba156fa39d3f1c8ddc762ab214cf5b9
+  tag: latest@sha256:a92edf244cbb794fb5cd10d8b3ff808cbf7c0b689bbc01cb9911288f1b467518
 
 # See more environment variables in the babybuddy documentation
-# https://github.com/linuxserver/docker-babybuddy#parameters
-env: {}
+# https://hub.docker.com/r/jgeusebroek/spotweb
+env:
   # TZ:
+  SPOTWEB_CRON_RETRIEVE: "*/15 * * * *"
 
 envTpl:
   SPOTWEB_DB_TYPE: "pdo_pgsql"
@@ -23,6 +24,45 @@ envValueFrom:
     secretKeyRef:
       name: dbcreds
       key: plainhost
+
+# initContainers:
+#   spotweb-init-db:
+#     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+#     env:
+#       - name: SPOTWEB_DB_TYPE
+#         value: "pdo_pgsql"
+#       - name: SPOTWEB_DB_NAME
+#         value: "{{ .Values.postgresql.postgresqlDatabase }}"
+#       - name: SPOTWEB_DB_USER
+#         value: "{{ .Values.postgresql.postgresqlUsername }}"
+#       - name: SPOTWEB_DB_PORT
+#         value: "5432"
+#       - name: SPOTWEB_DB_PASS
+#         valueFrom:
+#           secretKeyRef:
+#             name: dbcreds
+#             key: postgresql-password
+#       - name: SPOTWEB_DB_HOST
+#         valueFrom:
+#           secretKeyRef:
+#             name: dbcreds
+#             key: plainhost
+
+#     command: [ "php" ]
+#     args:
+#       - "-f"
+#       - "/var/www/spotweb/bin/upgrade-db.php"
+#       - "--"
+#       - "-reset-password"
+#       - "admin"
+#       - "-set-systemtype"
+#       - "single"
+#     securityContext:
+#       runAsUser: 0
+#       runAsGroup: 0
+#       readOnlyRootFilesystem: false
+#       allowPrivilegeEscalation: false
+#       runAsNonRoot: false
 
 securityContext:
   readOnlyRootFilesystem: false

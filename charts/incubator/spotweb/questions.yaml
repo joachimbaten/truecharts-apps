@@ -81,6 +81,12 @@ questions:
       type: dict
       attrs:
 # Include{fixedEnv}
+        - variable: SPOTWEB_CRON_RETRIEVE
+          label: "SPOTWEB_CRON_RETRIEVE"
+          description: "Cron schedule for article retrieval. E.g. */15 * * * * for every fifteen minutes."
+          schema:
+            type: string
+            default: "*/15 * * * *"
 
 # Include{containerConfig}
 
